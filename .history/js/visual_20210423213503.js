@@ -1,4 +1,4 @@
-//流量
+//交通流量
 var data = {
     id: 'multipleBarsLines',
     legendBar: ['高速公路', '城镇公路'],
@@ -96,7 +96,148 @@ var myData = (function test() {
         legendArr
     }
 })()
-//代码量
+option1 = {
+    title: {
+        show: true,
+        text: data.title,
+        subtext: data.subTitle,
+        link: '1111'
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: function(params) {
+            var time = '';
+            var str = '';
+            for (var i of params) {
+                time = i.name.replace(/\n/g, '') + '<br/>';
+                if (i.data == 'null' || i.data == null) {
+                    str += i.seriesName + '：无数据' + '<br/>'
+                } else {
+                    str += i.seriesName + '：' + i.data + symbol + '%<br/>'
+                }
+
+            }
+            return time + str;
+        },
+        axisPointer: {
+            type: 'none'
+        },
+    },
+    legend: {
+        right: data.legendRight || '30%',
+        top: 0,
+        right:10,
+        itemGap: 16,
+        itemWidth: 10,
+        itemHeight: 10,
+        data: myData.legendArr,
+        textStyle: {
+            color: '#fff',
+            fontStyle: 'normal',
+            fontFamily: '微软雅黑',
+            fontSize: 12,
+        }
+    },
+    grid: {
+        x: 0,
+        y: 30,
+        x2: 0,
+        y2: 25,
+    },
+    xAxis: {
+        type: 'category',
+        data: data.xAxis,
+        axisTick: {
+            show: false,
+        },
+
+        axisLine: {
+            show: false,
+        },
+        axisLabel: {       //轴标
+            show: true,
+            interval: '0',
+            textStyle: {
+                lineHeight:5,
+                padding: [2, 2, 0, 2],
+                height: 50,
+                fontSize: 12,
+                color:'#fff',
+            },
+            rich: {
+                Sunny: {
+                    height: 50,
+                    // width: 60,
+                    padding: [0, 5, 0, 5],
+                    align: 'center',
+                },
+            },
+            formatter: function(params, index) {
+                var newParamsName = "";
+                var splitNumber = 5;
+                var paramsNameNumber = params && params.length;
+                if (paramsNameNumber && paramsNameNumber <= 4) {
+                    splitNumber = 4;
+                } else if (paramsNameNumber >= 5 && paramsNameNumber <= 7) {
+                    splitNumber = 4;
+                } else if (paramsNameNumber >= 8 && paramsNameNumber <= 9) {
+                    splitNumber = 5;
+                } else if (paramsNameNumber >= 10 && paramsNameNumber <= 14) {
+                    splitNumber = 5;
+                } else {
+                    params = params && params.slice(0, 15);
+                }
+
+                var provideNumber = splitNumber; //一行显示几个字
+                var rowNumber = Math.ceil(paramsNameNumber / provideNumber) || 0;
+                if (paramsNameNumber > provideNumber) {
+                    for (var p = 0; p < rowNumber; p++) {
+                        var tempStr = "";
+                        var start = p * provideNumber;
+                        var end = start + provideNumber;
+                        if (p == rowNumber - 1) {
+                            tempStr = params.substring(start, paramsNameNumber);
+                        } else {
+                            tempStr = params.substring(start, end) + "\n";
+                        }
+                        newParamsName += tempStr;
+                    }
+
+                } else {
+                    newParamsName = params;
+                }
+                params = newParamsName
+                return '{Sunny|' + params + '}';
+            },
+            color: '#687284',
+        },
+
+    },
+    yAxis: {
+        axisLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false
+        },
+        splitLine: {
+            show: true,
+            lineStyle: {
+                color: '#F1F3F5',
+                type: 'solid'
+            },
+            interval: 2
+        },
+        splitNumber: 4,
+    },
+    series: myData.seriesArr
+}
+//////////////////////交通流量 end
+
+//交通工具流量
 option2 = {
     
     tooltip: {//鼠标指上时的标线
@@ -112,7 +253,7 @@ option2 = {
         itemWidth: 14,
         itemHeight: 5,
         itemGap: 13,
-        data: ['小程序', 'Python', 'Java'],
+        data: ['小型车', '中型车', '大型车'],
         right: '10px',
         top: '0px',
         textStyle: {
@@ -167,7 +308,7 @@ option2 = {
         }
     }],
     series: [{
-        name: '小程序',
+        name: '小型车',
         type: 'line',
         smooth: true,
         lineStyle: {
@@ -195,7 +336,7 @@ option2 = {
         },
         data: [20,35,34,45,52,41,49,64,24,52.4,24,33]
     }, {
-        name: 'Python',
+        name: '中型车',
         type: 'line',
         smooth: true,
         lineStyle: {
@@ -223,7 +364,7 @@ option2 = {
         },
         data: [97.3,99.2,99.3,100.0,99.6,90.6,80.0,91.5,69.8,67.5,90.4,84.9]
     }, {
-        name: 'Java',
+        name: '大型车',
         type: 'line',
         smooth: true,
         lineStyle: {
@@ -254,26 +395,26 @@ option2 = {
 };
 //////////////////////交通工具流量 end
 
-//技能雷达1
+//本月发生事件1
 var color = ['#e9df3d', '#f79c19', '#21fcd6', '#08c8ff', '#df4131'];
 var data = [{
-        "name": "Spark",
+        "name": "超速",
         "value": 30
     },
     {
-        "name": "大数据",
+        "name": "闯红灯",
         "value": 30
     },
     {
-        "name": "Spring Boot",
+        "name": "闯禁行",
         "value": 42
     },
     {
-        "name": "JavaScript",
+        "name": "违停",
         "value": 50
     },
     {
-        "name": "微信小程序",
+        "name": "逆行",
         "value": 34
     }
 ];
@@ -382,27 +523,27 @@ option3 = {
         data: renderData
     }]
 }
-
-//技能雷达2
+//////////////////////本月发生事件1 end
+//本月发生事件2
 var color = ['#e9df3d', '#f79c19', '#21fcd6', '#08c8ff', '#df4131'];
 var data = [{
-        "name": "Vue",
+        "name": "超速",
         "value": 15
     },
     {
-        "name": "可视化",
+        "name": "闯红灯",
         "value": 14
     },
     {
-        "name": "jQuery",
+        "name": "闯禁行",
         "value": 23
     },
     {
-        "name": "Bootstrap",
-        "value": 10
+        "name": "违停",
+        "value": 2
     },
     {
-        "name": "Node.js",
+        "name": "逆行",
         "value": 50
     }
 ];
@@ -514,6 +655,8 @@ option31 = {
 //////////////////////本月发生事件2 end
 
 
+
+//收费站收费排行1
 var spirit = '../images.ksh45.png';
 
 var maxData = 200;
@@ -560,11 +703,11 @@ option4 = {
         "type": "category",
         "inverse": false,
         "data": [
-          "贵阳",
-          "六盘水",
-          "遵义",
-          "毕节",
-          "安顺",
+          "晋城",
+          "太旧",
+          "太原",
+          "吕梁",
+          "长治",
         ],
         "axisLine": {
           "show": false
@@ -657,8 +800,9 @@ setInterval(function () {
         }]
     })
 }, 3000)
+//////////////////////收费站收费排行2 end
 
-//2
+//收费站收费排行2
 var spirit = '../images.ksh45.png';
 
 var maxData = 200;
@@ -705,11 +849,11 @@ option41 = {
         "type": "category",
         "inverse": false,
         "data": [
-          "深圳",
-          "浙江",
-          "长沙",
-          "武汉",
-          "四川",
+          "朔州",
+          "大同",
+          "运城",
+          "忻州",
+          "临汾",
         ],
         "axisLine": {
           "show": false
@@ -802,8 +946,9 @@ setInterval(function () {
         }]
     })
 }, 3000)
+//////////////////////收费站收费排行2 end
 
-//
+//今日实时收费
 
 var shadowColor = '#374b86';
 var value = 80;
@@ -811,7 +956,7 @@ option5 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `gitee平台`,
+        text: `车辆总数`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
@@ -903,7 +1048,7 @@ option6 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `github平台`,
+        text: `今日上线`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
@@ -995,7 +1140,7 @@ option7 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `conding腾讯平台`,
+        text: `今日报警`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整

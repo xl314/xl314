@@ -382,27 +382,27 @@ option3 = {
         data: renderData
     }]
 }
-
-//技能雷达2
+//////////////////////本月发生事件1 end
+//本月发生事件2
 var color = ['#e9df3d', '#f79c19', '#21fcd6', '#08c8ff', '#df4131'];
 var data = [{
-        "name": "Vue",
+        "name": "超速",
         "value": 15
     },
     {
-        "name": "可视化",
+        "name": "闯红灯",
         "value": 14
     },
     {
-        "name": "jQuery",
+        "name": "闯禁行",
         "value": 23
     },
     {
-        "name": "Bootstrap",
-        "value": 10
+        "name": "违停",
+        "value": 2
     },
     {
-        "name": "Node.js",
+        "name": "逆行",
         "value": 50
     }
 ];
@@ -514,6 +514,8 @@ option31 = {
 //////////////////////本月发生事件2 end
 
 
+
+//收费站收费排行1
 var spirit = '../images.ksh45.png';
 
 var maxData = 200;
@@ -560,11 +562,11 @@ option4 = {
         "type": "category",
         "inverse": false,
         "data": [
-          "贵阳",
-          "六盘水",
-          "遵义",
-          "毕节",
-          "安顺",
+          "晋城",
+          "太旧",
+          "太原",
+          "吕梁",
+          "长治",
         ],
         "axisLine": {
           "show": false
@@ -657,8 +659,9 @@ setInterval(function () {
         }]
     })
 }, 3000)
+//////////////////////收费站收费排行2 end
 
-//2
+//收费站收费排行2
 var spirit = '../images.ksh45.png';
 
 var maxData = 200;
@@ -705,11 +708,11 @@ option41 = {
         "type": "category",
         "inverse": false,
         "data": [
-          "深圳",
-          "浙江",
-          "长沙",
-          "武汉",
-          "四川",
+          "朔州",
+          "大同",
+          "运城",
+          "忻州",
+          "临汾",
         ],
         "axisLine": {
           "show": false
@@ -802,8 +805,9 @@ setInterval(function () {
         }]
     })
 }, 3000)
+//////////////////////收费站收费排行2 end
 
-//
+//今日实时收费
 
 var shadowColor = '#374b86';
 var value = 80;
@@ -811,7 +815,7 @@ option5 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `gitee平台`,
+        text: `车辆总数`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
@@ -903,7 +907,7 @@ option6 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `github平台`,
+        text: `今日上线`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
@@ -995,7 +999,7 @@ option7 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `conding腾讯平台`,
+        text: `今日报警`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整

@@ -903,7 +903,7 @@ option6 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `github平台`,
+        text: `今日上线`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
@@ -995,7 +995,7 @@ option7 = {
     
     title: {
         //text: `${value}万辆`,
-        text: `conding腾讯平台`,
+        text: `今日报警`,
         subtext: '',
         left: 'center',
         top: 'center',//top待调整
